@@ -16,8 +16,8 @@ let data = {
 export default {
   data() {
     return {
-      area: 0,
-      corners: 0,
+      area: 10,
+      corners: 4,
       color: 'white',
       texture: 'pvc',
       result: 0,
@@ -39,7 +39,7 @@ export default {
       } else {
         this.result = 0;
       }
-      
+      console.log(this.result)
     },
     
     decreaseArea() {
@@ -67,7 +67,7 @@ export default {
     this.calculateCost();
   },
   computed: {
-    calculatelCost() {
+    totalCost() {
       return this.result !== 0 ? `Стоимость натяжного потолка: ${this.result} руб` : '';
     }
   }
@@ -135,7 +135,7 @@ export default {
         </div>
         <div class="content__price">
           <h4>Итого:</h4>
-          <p class="sum">{{ calculateCost() }}</p>
+          <p class="sum">{{ totalCost }}</p>
         </div>
         <div class="content__btns">
           <button class="primary">ОФОРМИТЬ ЗАКАЗ</button>
