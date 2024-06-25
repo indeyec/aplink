@@ -1,0 +1,209 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+select::-ms-expand {
+  display: none;
+}
+
+html {
+  font-size: 16px;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+@font-face {
+  font-family: "Futura PT Medium";
+  font-style: normal;
+  font-weight: normal;
+  src: local("Futura PT Medium"), url("./fonts/FuturaCyrillicMedium.woff") format("woff");
+}
+:root {
+  --primary: #bf3266;
+  --secondary: rgba(183, 186, 203, 0.2);
+  --secondary-dark: rgba(183, 186, 203, 0.4);
+  --black: #000000;
+  --white: #ffffff;
+}
+
+body {
+  font-family: "Futura PT Medium";
+  background: url("../components/icons/bg.png") no-repeat;
+  background-color: var(--white);
+  background-size: cover;
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+}
+
+main {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 5px 10px;
+}
+
+h1 {
+  color: var(--black);
+  font-size: 48px;
+  margin-bottom: 38px;
+  font-weight: 500;
+}
+
+.navigation {
+  display: flex;
+}
+.navigation button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background: var(--secondary);
+  padding: 18px 20px;
+  font-size: 18px;
+  border: none;
+  outline: none;
+}
+.navigation button i {
+  border: 2px var(--black) solid;
+  border-radius: 100%;
+  padding: 2px;
+  font-size: 12px;
+}
+.navigation button.selected {
+  background: var(--white);
+  box-shadow: 0px 4px 54.85px 0px rgba(133, 133, 133, 0.25);
+}
+
+.wrapper {
+  background: var(--white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0px 4px 54.95px 0px rgba(133, 133, 133, 0.25);
+}
+.wrapper img {
+  object-fit: cover;
+  width: 750px;
+  height: 481px;
+}
+
+.content {
+  padding: 40px;
+}
+.content__group {
+  display: flex;
+  gap: 30px;
+}
+.content__group p {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+.content__group:first-child {
+  margin-bottom: 35px;
+}
+.content__group__input, .content__group__select {
+  width: 280px;
+  background-color: var(--secondary);
+  font-size: 18px;
+  padding: 10px;
+}
+.content__group__input button, .content__group__select button {
+  cursor: pointer;
+  background: var(--secondary-dark);
+  outline: none;
+  border: none;
+  padding: 10px 12px;
+  font-size: 18px;
+}
+.content__group__input select, .content__group__select select {
+  padding: 10px;
+  appearance: none;
+  outline: none;
+  border: none;
+  box-shadow: none;
+  flex: 1;
+  color: var(--black);
+  background-color: transparent;
+  background-image: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+.content__group__input select i, .content__group__select select i {
+  position: absolute;
+  right: 0;
+  pointer-events: none;
+  z-index: 10;
+  padding: 10px 12px;
+  color: var(--white);
+  background-color: var(--primary);
+}
+.content__group__input select div, .content__group__select select div {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content__group__input select div input, .content__group__select select div input {
+  background: transparent;
+  border: none;
+  text-align: center;
+  font-family: "Futura PT Medium";
+  font-size: 18px;
+  font-weight: 400;
+  width: 100px;
+  min-width: none;
+  outline: 0;
+}
+.content__group__price {
+  display: flex;
+  align-items: center;
+  margin: 35px;
+  gap: 4px;
+}
+.content__group__price h4 {
+  font-size: 36px;
+  font-weight: 500;
+}
+.content__group__price p {
+  font-size: 18px;
+}
+.content__group__price h4 span {
+  color: var(--primary);
+}
+.content__group__btns {
+  display: flex;
+  gap: 35px;
+}
+.content__group__btns button {
+  border: 1px solid var(--primary);
+  background: transparent;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.content__group__btns button.primary {
+  border: none;
+  overflow: hidden;
+  position: relative;
+  color: var(--white);
+  background: var(--primary);
+}
+.content__group .sum {
+  margin-left: 20px;
+  top: 20px;
+  font-size: 18px;
+}
+.content__group .tooltip {
+  position: absolute;
+  right: 90px;
+  top: 8px;
+}
+
+/*# sourceMappingURL=vue.css.map */
