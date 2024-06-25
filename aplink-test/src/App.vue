@@ -71,8 +71,10 @@ export default {
  <main>
     <h1>Рассчитайте стоимость Вашего потолка онлайн!</h1>
     <div class="navigation">
-      <button :class="{ 'selected': currentRoom === 1 }">Комната №1</button>
-      <button @click="addRoom"><i class="fa-solid fa-plus"></i> Добавить комнату</button>
+      <button v-for="(room, index) in rooms" :key="index" :class="{ selected: selectedRoomIndex === index }" @click="selectRoom(index)">
+  Комната №{{ index + 1 }}
+</button>
+<button @click="addRoom"><i class="fa-solid fa-plus"></i> Добавить комнату</button>
     </div>
     <div class="wrapper">
       <div class="content">
