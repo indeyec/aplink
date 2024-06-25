@@ -17,8 +17,9 @@ body {
   font-family: 'Futura PT Medium';
   font-style: normal;
   font-weight: normal;
-  src: local('Futura PT Medium'), url('../fonts/FuturaCyrillicMedium.woff') format('woff');
+  src: local('Futura PT Medium'), url('./fonts/FuturaCyrillicMedium.woff') format('woff');
 }
+
 :root {
   --primary: #bf3266;
   --secondary: rgba(183, 186, 203, 0.20);
