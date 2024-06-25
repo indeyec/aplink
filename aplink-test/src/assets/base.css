@@ -28,7 +28,7 @@ body {
 }
 body {
   font-family: 'Futura PT Medium';
-  background: url("./components/icons/bg.png") no-repeat;
+  background: url("../components/icons/bg.png") no-repeat;
   background-color: var(--white);
   background-size: cover;
   min-height: 100dvh;
