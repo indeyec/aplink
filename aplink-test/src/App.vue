@@ -131,17 +131,54 @@ export default {
           <p class="sum">{{ totalCost }}</p>
         </div>
         <div class="content__btns">
-          <button class="primary">ОФОРМИТЬ ЗАКАЗ</button>
+          <button class="primary" @click ="openModal">ОФОРМИТЬ ЗАКАЗ</button>
           <button class="secondary">СКАЧАТЬ СМЕТУ</button>
         </div>
       </div>
+      <Modal :isOpen="isModalOpen" @close="closeModal" @submit="handleOrderSubmit" />
       <img src="./components/icons/hero.jpg" alt="hero image">
     </div>
   </main>
 
   
 </template>
+<script setup>
+import { ref } from 'vue';
+import Room from './components/Room.vue';
+import Modal from './components/Modal.vue';
 
+const isModalOpen = ref(false);
+
+const rooms = ref([{ area: 10, corners: 4, texture: 'pvc', color: 'white' }]);
+const selectedRoomIndex = ref(0);
+
+const addRoom = () => {
+  rooms.value.push({ area: 10, corners: 4, texture: 'pvc', color: 'white' });
+  selectedRoomIndex.value = rooms.value.length - 1;
+};
+
+const selectRoom = (index) => {
+  selectedRoomIndex.value = index;
+};
+
+const updateRoom = (index, key, value) => {
+  rooms.value[index][key] = value;
+};
+
+const openModal = () => {
+  isModalOpen.value = true;
+};
+
+const closeModal = () => {
+  isModalOpen.value = false;
+};
+
+const handleOrderSubmit = (data) => {
+  console.log('Order submitted:', data);
+  // здесь вы можете обработать отправленные данные
+  closeModal();
+};
+</script>
 <style scoped>
 
 </style>
