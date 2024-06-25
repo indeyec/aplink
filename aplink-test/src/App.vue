@@ -1,26 +1,17 @@
-<script >
-let data = {
-  "prices": {
-    "pvc": {
-      "white": 1390,
-      "colorful": 1600
-    },
-    "fabric": {
-      "white": 2250,
-      "colorful": 2500
-    },
-    "corner_price": 100
-  }
-};
+<script>
+import jsonData from './prices.json'
+
 
 export default {
   data() {
     return {
+      currentRoom: null,
       area: 10,
       corners: 4,
       color: 'white',
       texture: 'pvc',
       result: 0,
+      pricesData: jsonData.prices,
      
     };
   },
@@ -32,14 +23,13 @@ export default {
       let texture = this.texture;
 
       if (!isNaN(area) && !isNaN(corners) && area >= 1 && corners >= 0) {
-        let price_per_sqm = data.prices[texture][color];
-        let corner_price = data.prices["corner_price"];
+        let price_per_sqm = this.pricesData[texture][color];
+        let corner_price = this.pricesData["corner_price"];
         let price = price_per_sqm * area + corner_price * corners;
         this.result = price;
       } else {
         this.result = 0;
       }
-      console.log(this.result)
     },
     
     decreaseArea() {
@@ -69,9 +59,12 @@ export default {
   computed: {
     totalCost() {
       return this.result !== 0 ? `Стоимость натяжного потолка: ${this.result} руб` : '';
+      
     }
   }
+  
 };
+
 </script>
 
 <template>
