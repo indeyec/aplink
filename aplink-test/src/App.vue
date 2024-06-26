@@ -61,6 +61,7 @@ export default {
       this.calculateCost();
     }
   },
+  
   mounted() {
     this.calculateCost();
   },
@@ -91,7 +92,13 @@ export default {
   Комната №{{ index + 1 }}
 </button>
 <button @click="addRoom"><i class="fa-solid fa-plus"></i> Добавить комнату</button>
-<button @click="deleteRoom" class="delete-room-button">Удалить комнату</button>
+<button
+        v-if="rooms.length > 1"
+        @click="deleteRoom"
+        class="delete-room-button"
+      >
+        Удалить комнату
+      </button>
 
     </div>
     <div class="wrapper">
@@ -160,9 +167,10 @@ export default {
     </div>
   </main>
 
-  
 </template>
+
 <script setup>
+
 import { ref } from 'vue';
 import Room from './components/Room.vue';
 import Modal from './components/Modal.vue';
@@ -172,6 +180,21 @@ const isModalOpen = ref(false);
 const rooms = ref([{ area: 10, corners: 4, texture: 'pvc', color: 'white' }]);
 const selectedRoomIndex = ref(0);
 
+// const rooms = ref([]);
+
+// onMounted(() => {
+//   const storedRooms = JSON.parse(localStorage.getItem('rooms'));
+//   if (storedRooms) {
+//     rooms.value = storedRooms;
+//   } else {
+//     rooms.value = [{ area: 10, corners: 4, texture: 'pvc', color: 'white' }];
+//   }
+// });
+
+// watch(rooms, (newRooms) => {
+//   localStorage.setItem('rooms', JSON.stringify(newRooms));
+// }, { deep: true });
+
 const addRoom = () => {
   rooms.value.push({ area: 10, corners: 4, texture: 'pvc', color: 'white' });
   selectedRoomIndex.value = rooms.value.length - 1;
@@ -180,7 +203,10 @@ const addRoom = () => {
 const selectRoom = (index) => {
   selectedRoomIndex.value = index;
 };
-
+const deleteRoom = () => {
+    rooms.value.splice(selectedRoomIndex.value, 1);
+    selectedRoomIndex.value = Math.max(0, selectedRoomIndex.value - 1);
+  };
 const updateRoom = (index, key, value) => {
   rooms.value[index][key] = value;
 };
@@ -198,7 +224,30 @@ const handleOrderSubmit = (data) => {
   // здесь вы можете обработать отправленные данные
   closeModal();
 };
+// const totalCost = computed(() => {
+//   let total = 0;
+//   rooms.value.forEach(room => {
+//     let area = parseFloat(room.area);
+//     let corners = parseInt(room.corners);
+//     let color = room.color;
+//     let texture = room.texture;
+
+//     if (!isNaN(area) && !isNaN(corners) && area >= 1 && corners >= 1) {
+//       let price_per_sqm = jsonData.prices[texture][color];
+//       let corner_price = jsonData.prices["corner_price"];
+//       let price = price_per_sqm * area + corner_price * corners;
+//       total += price;
+//     }
+//   });
+
+//   return total > 0 ? `Стоимость натяжного потолка: ${total} рублей` : '';
+// });
+
 </script>
 <style scoped>
 
 </style>
+
+
+
+
