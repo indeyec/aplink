@@ -54,52 +54,55 @@
   </template>
   
   <script setup>
-  const props = defineProps({
-    area: Number,
-    corners: Number,
-    texture: String,
-    color: String
-  });
-  
-  const emit = defineEmits(['update:area', 'update:corners', 'update:texture', 'update:color']);
-  
-  const incrementArea = () => {
-    emit('update:area', props.area + 1);
-  };
-  
-  const decrementArea = () => {
-    if (props.area > 1) {
-      emit('update:area', props.area - 1);
-    }
-  };
-  
-  const incrementCorners = () => {
-    emit('update:corners', props.corners + 1);
-  };
-  
-  const decrementCorners = () => {
-    if (props.corners > 1) {
-      emit('update:corners', props.corners - 1);
-    }
-  };
-  
-  const updateArea = (value) => {
-    emit('update:area', parseInt(value));
-  };
-  
-  const updateCorners = (value) => {
-    emit('update:corners', parseInt(value));
-  };
-  
-  const updateTexture = (value) => {
-    emit('update:texture', value);
-  };
-  
-  const updateColor = (value) => {
-    emit('update:color', value);
-  };
-  </script>
-  
+const props = defineProps({
+  area: Number,
+  corners: Number,
+  texture: String,
+  color: String
+});
+
+const emit = defineEmits(['update:area', 'update:corners', 'update:texture', 'update:color', 'delete:room']);
+
+const incrementArea = () => {
+  emit('update:area', props.area + 1);
+};
+
+const decrementArea = () => {
+  if (props.area > 1) {
+    emit('update:area', props.area - 1);
+  }
+};
+
+const incrementCorners = () => {
+  emit('update:corners', props.corners + 1);
+};
+
+const decrementCorners = () => {
+  if (props.corners > 1) {
+    emit('update:corners', props.corners - 1);
+  }
+};
+
+const updateArea = (value) => {
+  emit('update:area', parseInt(value));
+};
+
+const updateCorners = (value) => {
+  emit('update:corners', parseInt(value));
+};
+
+const updateTexture = (value) => {
+  emit('update:texture', value);
+};
+
+const updateColor = (value) => {
+  emit('update:color', value);
+};
+
+const deleteRoom = () => {
+  emit('delete:room');
+};
+</script>
   <style scoped>
   /* Ваши стили для компонента Room.vue */
   </style>

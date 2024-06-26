@@ -22,7 +22,7 @@ export default {
       let color = this.color;
       let texture = this.texture;
 
-      if (!isNaN(area) && !isNaN(corners) && area >= 1 && corners >= 0) {
+      if (!isNaN(area) && !isNaN(corners) && area >= 1 && corners >= 1) {
         let price_per_sqm = this.pricesData[texture][color];
         let corner_price = this.pricesData["corner_price"];
         let price = price_per_sqm * area + corner_price * corners;
@@ -33,7 +33,7 @@ export default {
     },
     
     decreaseArea() {
-      if (this.area > 1) {
+      if (this.area > 10) {
         this.area--;
         this.calculateCost();
       }
@@ -43,7 +43,7 @@ export default {
       this.calculateCost();
     },
     decreaseCorners() {
-      if (this.corners > 0) {
+      if (this.corners > 1) {
         this.corners--;
         this.calculateCost();
       }
@@ -53,16 +53,32 @@ export default {
       this.calculateCost();
     }
   },
+  watch: {
+    color: function() {
+      this.calculateCost();
+    },
+    texture: function() {
+      this.calculateCost();
+    }
+  },
   mounted() {
     this.calculateCost();
   },
   computed: {
     totalCost() {
-      return this.result !== 0 ? `Стоимость натяжного потолка: ${this.result} руб` : '';
-      
+      if (this.result !== 0) {
+        let rubles = this.result % 100;
+        let word = 'рублей';
+        if (rubles === 1 || rubles === 21 || rubles === 31 || rubles === 41 || rubles === 51 || rubles === 61 || rubles === 71 || rubles === 81 || rubles === 91) {
+          word = 'рубль';
+        } else if (rubles >= 2 && rubles <= 4 || rubles >= 22 && rubles <= 24 || rubles >= 32 && rubles <= 34 || rubles >= 42 && rubles <= 44 || rubles >= 52 && rubles <= 54 || rubles >= 62 && rubles <= 64 || rubles >= 72 && rubles <= 74 || rubles >= 82 && rubles <= 84 || rubles >= 92 && rubles <= 94) {
+          word = 'рубля';
+        }
+        return `Стоимость натяжного потолка: ${this.result} ${word}`;
+      }
+      return '';
     }
   }
-  
 };
 
 </script>
@@ -75,6 +91,8 @@ export default {
   Комната №{{ index + 1 }}
 </button>
 <button @click="addRoom"><i class="fa-solid fa-plus"></i> Добавить комнату</button>
+<button @click="deleteRoom" class="delete-room-button">Удалить комнату</button>
+
     </div>
     <div class="wrapper">
       <div class="content">
